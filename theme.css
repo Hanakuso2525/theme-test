@@ -1,77 +1,64 @@
-/* =========================================
-   Discord Custom Glass Theme
-   Background + Blur + Glass Message Input
-   ========================================= */
+/* =========================================================
+   Discord Glass Theme
+   Background Image + Blur + Glass Message Input
+   ========================================================= */
 
 :root {
-    /* 背景画像 */
-    --custom-bg-image: url("https://files.catbox.moe/pd4itv.jpeg");
-
-    /* 背景のぼかし */
-    --custom-bg-blur: 8px;
-
-    /* 背景の暗さ */
-    --custom-bg-overlay: rgba(0, 0, 0, 0.25);
+    --custom-bg: url("https://files.catbox.moe/pd4itv.jpeg");
 }
 
 
-/* =========================================
-   Discord Background Variables
-   ========================================= */
-
-.theme-dark {
-    --background-primary: transparent !important;
-    --background-secondary: transparent !important;
-    --background-secondary-alt: transparent !important;
-    --background-tertiary: transparent !important;
-
-    --bg-base-primary: transparent !important;
-    --bg-base-secondary: transparent !important;
-    --bg-base-tertiary: transparent !important;
-
-    --background-floating: rgba(20, 20, 20, 0.55) !important;
-
-    --chat-background: transparent !important;
-    --chat-input-container-background: transparent !important;
-    --channeltextarea-background: rgba(255, 255, 255, 0.06) !important;
-}
-
-
-/* =========================================
-   Background Layer
-   ========================================= */
+/* =========================================================
+   1. 一番後ろに背景画像を置く
+   ========================================================= */
 
 #app-mount::before {
     content: "";
-
     position: fixed;
-    inset: calc(var(--custom-bg-blur) * -2);
 
-    z-index: -1000;
+    /*
+     * blur()で端が切れないように少し拡大
+     */
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+
+    z-index: 0;
     pointer-events: none;
 
-    background:
-        linear-gradient(
-            var(--custom-bg-overlay),
-            var(--custom-bg-overlay)
-        ),
-        var(--custom-bg-image);
-
+    background-image: var(--custom-bg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 
-    filter: blur(var(--custom-bg-blur));
+    /*
+     * 背景画像だけをぼかす
+     */
+    filter: blur(8px);
 
     transform: translateZ(0);
 }
 
 
-/* =========================================
-   Discord Main Backgrounds
-   ========================================= */
+/* =========================================================
+   2. Discordの主要コンテナを透明化
+   ========================================================= */
 
-[class*="bg_"],
+/* アプリ全体 */
+#app-mount,
+#app-mount > div {
+    background: transparent !important;
+}
+
+
+/* Discordの背景 */
+[class*="bg_"] {
+    background: transparent !important;
+}
+
+
+/* メインコンテンツ */
 [class*="app_"],
 [class*="chat_"],
 [class*="chatContent_"],
@@ -80,28 +67,41 @@
 }
 
 
-/* =========================================
-   Sidebar
-   ========================================= */
-
+/* チャンネル一覧 */
 [class*="sidebar_"] {
-    background: rgba(0, 0, 0, 0.18) !important;
+    background: rgba(0, 0, 0, 0.20) !important;
 }
 
 
-/* =========================================
-   Members List
-   ========================================= */
-
-[class*="members_"],
-[class*="membersWrap_"] {
+/* メンバー一覧 */
+[class*="membersWrap_"],
+[class*="members_"] {
     background: rgba(0, 0, 0, 0.15) !important;
 }
 
 
-/* =========================================
-   Message Input - Glass
-   ========================================= */
+/* =========================================================
+   3. DiscordのCSS変数も透明化
+   ========================================================= */
+
+.theme-dark {
+    --background-primary: transparent !important;
+    --background-secondary: transparent !important;
+    --background-secondary-alt: transparent !important;
+    --background-tertiary: transparent !important;
+
+    --background-floating: rgba(20, 20, 20, 0.70) !important;
+
+    --channeltextarea-background: rgba(255, 255, 255, 0.06) !important;
+
+    --chat-background: transparent !important;
+    --chat-input-container-background: transparent !important;
+}
+
+
+/* =========================================================
+   4. メッセージ入力欄をガラス化
+   ========================================================= */
 
 [class*="channelTextArea"] {
     background: rgba(255, 255, 255, 0.07) !important;
@@ -119,17 +119,22 @@
         0 4px 20px rgba(0, 0, 0, 0.18) !important;
 
     overflow: hidden !important;
-
-    transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease !important;
 }
 
 
-/* =========================================
-   Message Input Focus
-   ========================================= */
+/* =========================================================
+   5. 入力部分そのものは透明
+   ========================================================= */
+
+[class*="channelTextArea"] textarea,
+[class*="channelTextArea"] [contenteditable="true"] {
+    background: transparent !important;
+}
+
+
+/* =========================================================
+   6. フォーカス時
+   ========================================================= */
 
 [class*="channelTextArea"]:focus-within {
     background: rgba(255, 255, 255, 0.10) !important;
@@ -140,14 +145,4 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.16),
         0 0 0 1px rgba(255, 255, 255, 0.04),
         0 6px 24px rgba(0, 0, 0, 0.22) !important;
-}
-
-
-/* =========================================
-   Input Transparency
-   ========================================= */
-
-[class*="channelTextArea"] textarea,
-[class*="channelTextArea"] [contenteditable="true"] {
-    background: transparent !important;
 }
