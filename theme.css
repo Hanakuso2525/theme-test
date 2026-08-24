@@ -1,14 +1,23 @@
 /* =========================================================
-   Discord Web
-   iOS 26 Liquid Glass
-   - Server List
-   - Channel List
-   - Message Composer
+   Discord Web — Floating Liquid Glass
+   iOS 26 inspired
    ========================================================= */
+
+:root {
+    --glass-bg: rgba(255, 255, 255, 0.035);
+    --glass-border: rgba(255, 255, 255, 0.16);
+    --glass-highlight: rgba(255, 255, 255, 0.28);
+    --glass-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.22),
+        0 2px 8px rgba(0, 0, 0, 0.12);
+
+    --glass-radius: 20px;
+    --glass-gap: 8px;
+}
 
 
 /* =========================================================
-   Discord background variables
+   Discordの標準背景を透明化
    ========================================================= */
 
 .theme-dark {
@@ -21,8 +30,8 @@
     --bg-base-secondary: transparent !important;
     --bg-base-tertiary: transparent !important;
 
-    --bg-surface-raised: rgba(255, 255, 255, 0.035) !important;
-    --bg-surface-overlay: rgba(255, 255, 255, 0.045) !important;
+    --bg-surface-raised: transparent !important;
+    --bg-surface-overlay: transparent !important;
 
     --channeltextarea-background: transparent !important;
     --chat-input-container-background: transparent !important;
@@ -30,14 +39,12 @@
 
 
 /* =========================================================
-   Common Liquid Glass
+   アプリ本体
    ========================================================= */
 
-:root {
-    --liquid-glass-bg: rgba(255, 255, 255, 0.035);
-    --liquid-glass-border: rgba(255, 255, 255, 0.15);
-    --liquid-glass-highlight: rgba(255, 255, 255, 0.28);
-    --liquid-glass-shadow: rgba(0, 0, 0, 0.18);
+#app-mount,
+#app-mount > div {
+    background: transparent !important;
 }
 
 
@@ -46,44 +53,63 @@
    ========================================================= */
 
 /*
- * Discordのサーバーアイコンが並ぶ左端
+   サーバーアイコン一覧を独立したガラス板にする
  */
 
 [class*="guilds_"] {
-    background: rgba(255, 255, 255, 0.025) !important;
+    position: relative !important;
+
+    margin: var(--glass-gap) 0 var(--glass-gap) var(--glass-gap) !important;
+
+    width: calc(72px - var(--glass-gap)) !important;
+
+    height: calc(100% - (var(--glass-gap) * 2)) !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.025)
+        ) !important;
+
+    border:
+        1px solid var(--glass-border) !important;
+
+    border-radius:
+        var(--glass-radius) !important;
 
     backdrop-filter:
-        blur(28px)
+        blur(30px)
         saturate(180%)
-        brightness(1.06) !important;
+        brightness(1.08) !important;
 
     -webkit-backdrop-filter:
-        blur(28px)
+        blur(30px)
         saturate(180%)
-        brightness(1.06) !important;
-
-    border-right:
-        1px solid rgba(255, 255, 255, 0.10) !important;
+        brightness(1.08) !important;
 
     box-shadow:
-        inset -1px 0 0 rgba(255, 255, 255, 0.04),
-        inset 1px 0 0 rgba(255, 255, 255, 0.025),
-        4px 0 24px rgba(0, 0, 0, 0.10) !important;
+        var(--glass-shadow),
+        inset 0 1px 0 var(--glass-highlight),
+        inset 0 -1px 0 rgba(0,0,0,0.12) !important;
 
-    isolation: isolate;
+    overflow: hidden !important;
+
+    isolation: isolate !important;
 }
 
 
-/* サーバーリスト上部・下部も透明化 */
+/* サーバー一覧内部 */
 
 [class*="guilds_"] [class*="scroller_"] {
     background: transparent !important;
+
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
 }
 
 
-/* =========================================================
-   SERVER LIST - Liquid Glass Highlight
-   ========================================================= */
+/* サーバーリスト上部の光 */
 
 [class*="guilds_"]::before {
     content: "";
@@ -96,12 +122,12 @@
     background:
         linear-gradient(
             180deg,
-            rgba(255, 255, 255, 0.10),
-            rgba(255, 255, 255, 0.025) 20%,
-            transparent 55%
+            rgba(255,255,255,0.12),
+            rgba(255,255,255,0.025) 18%,
+            transparent 45%
         );
 
-    opacity: 0.65;
+    border-radius: inherit;
 
     z-index: 0;
 }
@@ -111,33 +137,49 @@
    CHANNEL LIST
    ========================================================= */
 
-/*
- * サーバーを選択した後に表示される
- * チャンネル・DM一覧
- */
-
 [class*="sidebar_"] {
-    background: rgba(255, 255, 255, 0.035) !important;
+    position: relative !important;
+
+    margin:
+        var(--glass-gap)
+        0
+        var(--glass-gap)
+        var(--glass-gap) !important;
+
+    height:
+        calc(100% - (var(--glass-gap) * 2)) !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.025)
+        ) !important;
+
+    border:
+        1px solid var(--glass-border) !important;
+
+    border-radius:
+        var(--glass-radius) !important;
 
     backdrop-filter:
         blur(30px)
         saturate(180%)
-        brightness(1.06) !important;
+        brightness(1.08) !important;
 
     -webkit-backdrop-filter:
         blur(30px)
         saturate(180%)
-        brightness(1.06) !important;
-
-    border-right:
-        1px solid rgba(255, 255, 255, 0.12) !important;
+        brightness(1.08) !important;
 
     box-shadow:
-        inset 1px 0 0 rgba(255, 255, 255, 0.025),
-        inset -1px 0 0 rgba(255, 255, 255, 0.035),
-        5px 0 28px rgba(0, 0, 0, 0.12) !important;
+        var(--glass-shadow),
+        inset 0 1px 0 var(--glass-highlight),
+        inset 0 -1px 0 rgba(0,0,0,0.12) !important;
 
-    isolation: isolate;
+    overflow: hidden !important;
+
+    isolation: isolate !important;
 }
 
 
@@ -150,37 +192,42 @@
 
 
 /* =========================================================
-   CHANNEL LIST - 上部のサーバー名部分
+   CHANNEL LIST HEADER
    ========================================================= */
 
 [class*="sidebar_"] [class*="header_"] {
-    background: rgba(255, 255, 255, 0.025) !important;
+    background: transparent !important;
 
     border-bottom:
-        1px solid rgba(255, 255, 255, 0.08) !important;
+        1px solid rgba(255,255,255,0.07) !important;
 
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+        inset 0 1px 0 rgba(255,255,255,0.06) !important;
 }
 
 
 /* =========================================================
-   CHANNEL LIST - 下部 USER AREA
+   CHANNEL LIST USER PANEL
    ========================================================= */
 
 [class*="sidebar_"] [class*="panels_"] {
     background:
         linear-gradient(
             180deg,
-            rgba(255, 255, 255, 0.025),
-            rgba(255, 255, 255, 0.055)
+            rgba(255,255,255,0.025),
+            rgba(255,255,255,0.055)
         ) !important;
 
-    backdrop-filter: blur(24px) saturate(170%) !important;
-    -webkit-backdrop-filter: blur(24px) saturate(170%) !important;
-
     border-top:
-        1px solid rgba(255, 255, 255, 0.10) !important;
+        1px solid rgba(255,255,255,0.09) !important;
+
+    backdrop-filter:
+        blur(20px)
+        saturate(160%) !important;
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(160%) !important;
 }
 
 
@@ -189,42 +236,52 @@
    ========================================================= */
 
 [class*="chat_"],
-[class*="chatContent_"],
-[class*="content_"] {
+[class*="chatContent_"] {
     background: transparent !important;
 }
 
 
 /* =========================================================
-   MESSAGE COMPOSER
+   MESSAGE INPUT — FLOATING GLASS
    ========================================================= */
 
 [class*="channelTextArea"] {
     position: relative !important;
 
-    background: rgba(255, 255, 255, 0.025) !important;
+    margin:
+        0
+        8px
+        8px
+        8px !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.025)
+        ) !important;
 
     backdrop-filter:
-        blur(26px)
+        blur(28px)
         saturate(180%)
         brightness(1.08) !important;
 
     -webkit-backdrop-filter:
-        blur(26px)
+        blur(28px)
         saturate(180%)
         brightness(1.08) !important;
 
     border:
-        1px solid rgba(255, 255, 255, 0.16) !important;
+        1px solid rgba(255,255,255,0.18) !important;
 
-    border-radius: 18px !important;
+    border-radius:
+        var(--glass-radius) !important;
 
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.32),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.12),
-        inset 0 0 16px rgba(255, 255, 255, 0.025),
-        0 6px 28px rgba(0, 0, 0, 0.16),
-        0 0 1px rgba(255, 255, 255, 0.35) !important;
+        0 10px 30px rgba(0,0,0,0.20),
+        0 2px 8px rgba(0,0,0,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.32),
+        inset 0 -1px 0 rgba(0,0,0,0.10) !important;
 
     overflow: hidden !important;
 
@@ -233,7 +290,7 @@
 
 
 /* =========================================================
-   MESSAGE COMPOSER - Highlight
+   INPUT GLASS HIGHLIGHT
    ========================================================= */
 
 [class*="channelTextArea"]::before {
@@ -247,9 +304,9 @@
     background:
         linear-gradient(
             180deg,
-            rgba(255, 255, 255, 0.14),
-            rgba(255, 255, 255, 0.035) 14%,
-            transparent 40%
+            rgba(255,255,255,0.14),
+            rgba(255,255,255,0.025) 25%,
+            transparent 55%
         );
 
     border-radius: inherit;
@@ -259,18 +316,60 @@
 
 
 /* =========================================================
-   INPUT
+   INPUT TRANSPARENCY
    ========================================================= */
 
 [class*="channelTextArea"] textarea,
 [class*="channelTextArea"] [contenteditable="true"] {
     background: transparent !important;
     border: none !important;
-    outline: none !important;
     box-shadow: none !important;
+    outline: none !important;
 
     position: relative !important;
+
     z-index: 2;
+}
+
+
+/* =========================================================
+   INPUT BUTTONS
+   ========================================================= */
+
+[class*="channelTextArea"] button {
+    background:
+        rgba(255,255,255,0.035) !important;
+
+    border:
+        1px solid rgba(255,255,255,0.10) !important;
+
+    border-radius:
+        11px !important;
+
+    backdrop-filter:
+        blur(14px)
+        saturate(160%) !important;
+
+    -webkit-backdrop-filter:
+        blur(14px)
+        saturate(160%) !important;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.15),
+        0 2px 7px rgba(0,0,0,0.08) !important;
+
+    transition:
+        background 0.18s ease,
+        transform 0.18s ease !important;
+}
+
+
+[class*="channelTextArea"] button:hover {
+    background:
+        rgba(255,255,255,0.085) !important;
+
+    transform:
+        translateY(-1px);
 }
 
 
@@ -279,44 +378,13 @@
    ========================================================= */
 
 [class*="channelTextArea"]:focus-within {
-    background: rgba(255, 255, 255, 0.035) !important;
-
     border-color:
-        rgba(255, 255, 255, 0.23) !important;
+        rgba(255,255,255,0.25) !important;
 
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.40),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.10),
-        inset 0 0 20px rgba(255, 255, 255, 0.03),
-        0 8px 32px rgba(0, 0, 0, 0.18),
-        0 0 1px rgba(255, 255, 255, 0.40) !important;
-}
-
-
-/* =========================================================
-   BUTTONS INSIDE INPUT
-   ========================================================= */
-
-[class*="channelTextArea"] button {
-    background: rgba(255, 255, 255, 0.025) !important;
-
-    border:
-        1px solid rgba(255, 255, 255, 0.08) !important;
-
-    border-radius: 10px !important;
-
-    backdrop-filter: blur(12px) saturate(160%) !important;
-    -webkit-backdrop-filter: blur(12px) saturate(160%) !important;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.14),
-        0 2px 8px rgba(0, 0, 0, 0.08) !important;
-}
-
-
-[class*="channelTextArea"] button:hover {
-    background: rgba(255, 255, 255, 0.075) !important;
-
-    border-color:
-        rgba(255, 255, 255, 0.16) !important;
+        0 12px 35px rgba(0,0,0,0.22),
+        0 3px 10px rgba(0,0,0,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.42),
+        inset 0 -1px 0 rgba(0,0,0,0.10),
+        0 0 1px rgba(255,255,255,0.4) !important;
 }
