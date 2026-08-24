@@ -1,129 +1,91 @@
 /* =========================================================
-   Discord Glass Theme
-   Background Image + Blur + Glass Message Input
+   Discord - iOS 26 Liquid Glass Message Input
    ========================================================= */
 
-:root {
-    --custom-bg: url("https://files.catbox.moe/pd4itv.jpeg");
-}
-
-
-/* =========================================================
-   1. 一番後ろに背景画像を置く
-   ========================================================= */
-
-#app-mount::before {
-    content: "";
-    position: fixed;
-
-    /*
-     * blur()で端が切れないように少し拡大
-     */
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-
-    z-index: 0;
-    pointer-events: none;
-
-    background-image: var(--custom-bg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    /*
-     * 背景画像だけをぼかす
-     */
-    filter: blur(8px);
-
-    transform: translateZ(0);
-}
-
-
-/* =========================================================
-   2. Discordの主要コンテナを透明化
-   ========================================================= */
-
-/* アプリ全体 */
-#app-mount,
-#app-mount > div {
-    background: transparent !important;
-}
-
-
-/* Discordの背景 */
-[class*="bg_"] {
-    background: transparent !important;
-}
-
-
-/* メインコンテンツ */
-[class*="app_"],
-[class*="chat_"],
-[class*="chatContent_"],
-[class*="content_"] {
-    background: transparent !important;
-}
-
-
-/* チャンネル一覧 */
-[class*="sidebar_"] {
-    background: rgba(0, 0, 0, 0.20) !important;
-}
-
-
-/* メンバー一覧 */
-[class*="membersWrap_"],
-[class*="members_"] {
-    background: rgba(0, 0, 0, 0.15) !important;
-}
-
-
-/* =========================================================
-   3. DiscordのCSS変数も透明化
-   ========================================================= */
-
-.theme-dark {
-    --background-primary: transparent !important;
-    --background-secondary: transparent !important;
-    --background-secondary-alt: transparent !important;
-    --background-tertiary: transparent !important;
-
-    --background-floating: rgba(20, 20, 20, 0.70) !important;
-
-    --channeltextarea-background: rgba(255, 255, 255, 0.06) !important;
-
-    --chat-background: transparent !important;
-    --chat-input-container-background: transparent !important;
-}
-
-
-/* =========================================================
-   4. メッセージ入力欄をガラス化
-   ========================================================= */
-
+/* 入力欄 */
 [class*="channelTextArea"] {
-    background: rgba(255, 255, 255, 0.07) !important;
+    /* ガラス本体 */
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.16) 0%,
+            rgba(255, 255, 255, 0.07) 45%,
+            rgba(255, 255, 255, 0.04) 100%
+        ) !important;
 
-    backdrop-filter: blur(18px) saturate(140%) !important;
-    -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
+    /* 背景を強めにぼかす */
+    backdrop-filter:
+        blur(28px)
+        saturate(180%)
+        brightness(1.08) !important;
 
-    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    -webkit-backdrop-filter:
+        blur(28px)
+        saturate(180%)
+        brightness(1.08) !important;
 
-    border-radius: 14px !important;
+    /* Liquid Glassらしい薄い境界 */
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
 
+    border-radius: 18px !important;
+
+    /* 多層の光 */
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.12),
-        inset 0 -1px 0 rgba(0, 0, 0, 0.12),
-        0 4px 20px rgba(0, 0, 0, 0.18) !important;
+        /* 上側の反射 */
+        inset 0 1px 0 rgba(255, 255, 255, 0.42),
+
+        /* 下側の暗いエッジ */
+        inset 0 -1px 0 rgba(0, 0, 0, 0.16),
+
+        /* 内側の柔らかい光 */
+        inset 0 0 18px rgba(255, 255, 255, 0.035),
+
+        /* 外側の浮遊感 */
+        0 8px 30px rgba(0, 0, 0, 0.22),
+
+        /* ごく薄い白い光 */
+        0 0 1px rgba(255, 255, 255, 0.5) !important;
 
     overflow: hidden !important;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease !important;
 }
 
 
 /* =========================================================
-   5. 入力部分そのものは透明
+   上部のガラス反射
+   ========================================================= */
+
+[class*="channelTextArea"]::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.13),
+            rgba(255, 255, 255, 0.025) 35%,
+            transparent 65%
+        );
+
+    opacity: 0.8;
+
+    border-radius: inherit;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   入力部分を透明化
    ========================================================= */
 
 [class*="channelTextArea"] textarea,
@@ -133,16 +95,67 @@
 
 
 /* =========================================================
-   6. フォーカス時
+   中のUIを前面へ
+   ========================================================= */
+
+[class*="channelTextArea"] > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================================================
+   フォーカス時
    ========================================================= */
 
 [class*="channelTextArea"]:focus-within {
-    background: rgba(255, 255, 255, 0.10) !important;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.20) 0%,
+            rgba(255, 255, 255, 0.085) 45%,
+            rgba(255, 255, 255, 0.045) 100%
+        ) !important;
 
-    border-color: rgba(255, 255, 255, 0.24) !important;
+    border-color: rgba(255, 255, 255, 0.34) !important;
 
     box-shadow:
-        inset 0 1px 0 rgba(255, 255, 255, 0.16),
-        0 0 0 1px rgba(255, 255, 255, 0.04),
-        0 6px 24px rgba(0, 0, 0, 0.22) !important;
+        inset 0 1px 0 rgba(255, 255, 255, 0.50),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+        inset 0 0 22px rgba(255, 255, 255, 0.045),
+        0 10px 35px rgba(0, 0, 0, 0.25),
+        0 0 18px rgba(255, 255, 255, 0.06) !important;
+}
+
+
+/* =========================================================
+   プレースホルダー
+   ========================================================= */
+
+[class*="channelTextArea"] [class*="placeholder"] {
+    color: rgba(255, 255, 255, 0.58) !important;
+}
+
+
+/* =========================================================
+   ボタン類も少しガラス化
+   ========================================================= */
+
+[class*="channelTextArea"] button {
+    background: rgba(255, 255, 255, 0.055) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+
+    border-radius: 10px !important;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease !important;
+}
+
+
+[class*="channelTextArea"] button:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+
+    border-color: rgba(255, 255, 255, 0.18) !important;
 }
