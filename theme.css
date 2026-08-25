@@ -1,344 +1,226 @@
 /* =========================================================
    Discord Web
-   Floating Liquid Glass UI
-   Server List / Channel List / Chat
+   Soft Pink Theme
+   Lightweight
    ========================================================= */
 
 :root {
-    --glass-gap: 7px;
-    --glass-radius: 20px;
+    /* メインカラー */
+    --pink-main: #f4a6c1;
+    --pink-light: #ffd9e5;
+    --pink-soft: #f8c5d6;
 
-    --glass-bg: rgba(255, 255, 255, 0.035);
-    --glass-bg-strong: rgba(255, 255, 255, 0.05);
+    /* パネル */
+    --panel: rgba(255, 225, 235, 0.92);
+    --panel-light: rgba(255, 235, 242, 0.94);
 
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --glass-highlight: rgba(255, 255, 255, 0.28);
+    /* 境界 */
+    --border: rgba(255, 255, 255, 0.65);
 
-    --glass-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.20),
-        0 2px 8px rgba(0, 0, 0, 0.12);
+    /* 文字 */
+    --text-main: #4d2635;
+    --text-sub: #795666;
+
+    /* 影 */
+    --shadow:
+        0 5px 18px rgba(120, 50, 75, 0.12);
+
+    --radius: 18px;
+    --gap: 7px;
 }
 
 
 /* =========================================================
-   Discord標準背景を透明化
+   Discord Background
    ========================================================= */
 
 .theme-dark {
-    --background-primary: transparent !important;
-    --background-secondary: transparent !important;
-    --background-secondary-alt: transparent !important;
-    --background-tertiary: transparent !important;
+    --background-primary: #fff1f5 !important;
+    --background-secondary: #ffe8ef !important;
+    --background-secondary-alt: #ffe3eb !important;
+    --background-tertiary: #ffdce6 !important;
 
-    --bg-base-primary: transparent !important;
-    --bg-base-secondary: transparent !important;
-    --bg-base-tertiary: transparent !important;
+    --bg-base-primary: #fff1f5 !important;
+    --bg-base-secondary: #ffe8ef !important;
+    --bg-base-tertiary: #ffdce6 !important;
 
-    --bg-surface-raised: transparent !important;
-    --bg-surface-overlay: transparent !important;
+    --bg-surface-raised: #ffe8ef !important;
+    --bg-surface-overlay: #ffe3eb !important;
 
-    --chat-background: transparent !important;
-    --chat-input-container-background: transparent !important;
+    --chat-background: #fff1f5 !important;
     --channeltextarea-background: transparent !important;
+    --chat-input-container-background: transparent !important;
 }
 
 
 /* =========================================================
-   アプリ全体
+   App
    ========================================================= */
 
 #app-mount,
 #app-mount > div {
-    background: transparent !important;
+    background: #fff1f5 !important;
 }
 
 
 /* =========================================================
-   ① SERVER LIST
-   完全独立したガラスパネル
+   SERVER LIST
    ========================================================= */
 
 [class*="guilds_"] {
     position: relative !important;
 
-    /* 上下左右に余白 */
     margin:
-        var(--glass-gap)
+        var(--gap)
         0
-        var(--glass-gap)
-        var(--glass-gap) !important;
+        var(--gap)
+        var(--gap) !important;
 
     height:
-        calc(100% - (var(--glass-gap) * 2)) !important;
+        calc(100% - 14px) !important;
 
     flex: 0 0 64px !important;
 
     width: 64px !important;
 
     background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,0.055),
-            rgba(255,255,255,0.025)
-        ) !important;
+        var(--panel) !important;
 
     border:
-        1px solid var(--glass-border) !important;
+        1px solid var(--border) !important;
 
     border-radius:
-        var(--glass-radius) !important;
-
-    backdrop-filter:
-        blur(30px)
-        saturate(180%)
-        brightness(1.08) !important;
-
-    -webkit-backdrop-filter:
-        blur(30px)
-        saturate(180%)
-        brightness(1.08) !important;
+        var(--radius) !important;
 
     box-shadow:
-        var(--glass-shadow),
-        inset 0 1px 0 var(--glass-highlight),
-        inset 0 -1px 0 rgba(0,0,0,0.12) !important;
+        var(--shadow) !important;
 
     overflow: hidden !important;
-
-    isolation: isolate !important;
 }
 
 
-/* サーバーリスト内部 */
+/* Server list internal */
+
 [class*="guilds_"] [class*="scroller_"] {
     background: transparent !important;
-
-    padding-top: 6px !important;
-    padding-bottom: 6px !important;
-}
-
-
-/* サーバーリスト上部の反射 */
-[class*="guilds_"]::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,0.12),
-            rgba(255,255,255,0.025) 20%,
-            transparent 48%
-        );
-
-    border-radius: inherit;
-
-    z-index: 0;
 }
 
 
 /* =========================================================
-   ② CHANNEL LIST
-   サーバーリストとは完全に別のガラス
+   CHANNEL LIST
    ========================================================= */
 
 [class*="sidebar_"] {
     position: relative !important;
 
-    /*
-     * サーバーリストとの間に隙間
-     */
     margin:
-        var(--glass-gap)
+        var(--gap)
         0
-        var(--glass-gap)
-        var(--glass-gap) !important;
+        var(--gap)
+        var(--gap) !important;
 
     height:
-        calc(100% - (var(--glass-gap) * 2)) !important;
-
-    min-width: 0 !important;
+        calc(100% - 14px) !important;
 
     background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,0.055),
-            rgba(255,255,255,0.025)
-        ) !important;
+        var(--panel-light) !important;
 
     border:
-        1px solid var(--glass-border) !important;
+        1px solid var(--border) !important;
 
     border-radius:
-        var(--glass-radius) !important;
-
-    backdrop-filter:
-        blur(30px)
-        saturate(180%)
-        brightness(1.08) !important;
-
-    -webkit-backdrop-filter:
-        blur(30px)
-        saturate(180%)
-        brightness(1.08) !important;
+        var(--radius) !important;
 
     box-shadow:
-        var(--glass-shadow),
-        inset 0 1px 0 var(--glass-highlight),
-        inset 0 -1px 0 rgba(0,0,0,0.12) !important;
+        var(--shadow) !important;
 
     overflow: hidden !important;
-
-    isolation: isolate !important;
 }
 
 
-/* チャンネル一覧内部 */
+/* Channel list internal */
+
 [class*="sidebar_"] [class*="scroller_"],
 [class*="sidebar_"] [class*="container_"] {
     background: transparent !important;
 }
 
 
-/* チャンネル一覧上部 */
+/* Header */
+
 [class*="sidebar_"] [class*="header_"] {
-    background: transparent !important;
+    background:
+        rgba(255, 210, 225, 0.55) !important;
 
     border-bottom:
-        1px solid rgba(255,255,255,0.07) !important;
+        1px solid rgba(255,255,255,0.55) !important;
 }
 
 
-/* チャンネル一覧下部 */
+/* Bottom user panel */
+
 [class*="sidebar_"] [class*="panels_"] {
     background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,0.02),
-            rgba(255,255,255,0.055)
-        ) !important;
+        rgba(255, 215, 228, 0.65) !important;
 
     border-top:
-        1px solid rgba(255,255,255,0.09) !important;
-
-    backdrop-filter:
-        blur(20px)
-        saturate(160%) !important;
-
-    -webkit-backdrop-filter:
-        blur(20px)
-        saturate(160%) !important;
+        1px solid rgba(255,255,255,0.55) !important;
 }
 
 
 /* =========================================================
-   ③ CHAT
-   チャンネル一覧とは完全に別のガラスパネル
+   CHAT
    ========================================================= */
 
 [class*="chat_"] {
     position: relative !important;
 
-    /*
-     * チャンネル一覧との間に隙間
-     */
     margin:
-        var(--glass-gap)
-        var(--glass-gap)
-        var(--glass-gap)
-        var(--glass-gap) !important;
+        var(--gap)
+        var(--gap)
+        var(--gap)
+        var(--gap) !important;
 
     height:
-        calc(100% - (var(--glass-gap) * 2)) !important;
-
-    min-width: 0 !important;
+        calc(100% - 14px) !important;
 
     background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,0.045),
-            rgba(255,255,255,0.02)
-        ) !important;
+        #fff4f7 !important;
 
     border:
-        1px solid var(--glass-border) !important;
+        1px solid rgba(255, 255, 255, 0.75) !important;
 
     border-radius:
-        var(--glass-radius) !important;
-
-    backdrop-filter:
-        blur(30px)
-        saturate(180%)
-        brightness(1.07) !important;
-
-    -webkit-backdrop-filter:
-        blur(30px)
-        saturate(180%)
-        brightness(1.07) !important;
+        var(--radius) !important;
 
     box-shadow:
-        var(--glass-shadow),
-        inset 0 1px 0 var(--glass-highlight),
-        inset 0 -1px 0 rgba(0,0,0,0.10) !important;
+        0 5px 20px rgba(120, 50, 75, 0.10) !important;
 
     overflow: hidden !important;
-
-    isolation: isolate !important;
 }
 
 
-/* チャット内部 */
+/* Chat internals */
+
 [class*="chatContent_"],
 [class*="content_"] {
     background: transparent !important;
 }
 
 
-/* チャットのヘッダー */
+/* Chat header */
+
 [class*="chat_"] [class*="header_"] {
-    background: transparent !important;
+    background:
+        rgba(255, 225, 235, 0.55) !important;
 
     border-bottom:
-        1px solid rgba(255,255,255,0.07) !important;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.05) !important;
-}
-
-
-/* =========================================================
-   CHAT PANEL — 上側のLiquid Glass反射
-   ========================================================= */
-
-[class*="chat_"]::before {
-    content: "";
-
-    position: absolute;
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,0.10),
-            rgba(255,255,255,0.02) 16%,
-            transparent 42%
-        );
-
-    border-radius: inherit;
-
-    z-index: 0;
+        1px solid rgba(255,255,255,0.7) !important;
 }
 
 
 /* =========================================================
    MESSAGE INPUT
-   チャット内部でも独立したガラス
    ========================================================= */
 
 [class*="channelTextArea"] {
@@ -351,73 +233,33 @@
         8px !important;
 
     background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,0.055),
-            rgba(255,255,255,0.025)
-        ) !important;
-
-    backdrop-filter:
-        blur(28px)
-        saturate(180%)
-        brightness(1.08) !important;
-
-    -webkit-backdrop-filter:
-        blur(28px)
-        saturate(180%)
-        brightness(1.08) !important;
+        #ffe6ee !important;
 
     border:
-        1px solid rgba(255,255,255,0.18) !important;
+        1px solid rgba(255,255,255,0.8) !important;
 
     border-radius:
-        18px !important;
+        16px !important;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,0.20),
-        0 2px 8px rgba(0,0,0,0.10),
-        inset 0 1px 0 rgba(255,255,255,0.32),
-        inset 0 -1px 0 rgba(0,0,0,0.10) !important;
+        0 5px 16px rgba(150, 60, 90, 0.10),
+        inset 0 1px 0 rgba(255,255,255,0.8) !important;
 
     overflow: hidden !important;
-
-    isolation: isolate !important;
 }
 
 
-/* 入力欄の反射 */
-[class*="channelTextArea"]::before {
-    content: "";
+/* Input */
 
-    position: absolute;
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(255,255,255,0.14),
-            rgba(255,255,255,0.025) 25%,
-            transparent 55%
-        );
-
-    border-radius: inherit;
-
-    z-index: 0;
-}
-
-
-/* 入力自体 */
 [class*="channelTextArea"] textarea,
 [class*="channelTextArea"] [contenteditable="true"] {
     background: transparent !important;
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
 
-    position: relative !important;
-    z-index: 2;
+    border: none !important;
+
+    outline: none !important;
+
+    box-shadow: none !important;
 }
 
 
@@ -427,46 +269,116 @@
 
 [class*="channelTextArea"] button {
     background:
-        rgba(255,255,255,0.03) !important;
+        rgba(255,255,255,0.42) !important;
 
     border:
-        1px solid rgba(255,255,255,0.09) !important;
+        1px solid rgba(255,255,255,0.65) !important;
 
     border-radius:
-        11px !important;
-
-    backdrop-filter:
-        blur(12px)
-        saturate(160%) !important;
-
-    -webkit-backdrop-filter:
-        blur(12px)
-        saturate(160%) !important;
+        10px !important;
 
     box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.14),
-        0 2px 7px rgba(0,0,0,0.08) !important;
+        0 2px 6px rgba(150,60,90,0.08) !important;
+
+    transition:
+        background 0.15s ease,
+        transform 0.15s ease !important;
 }
 
 
 [class*="channelTextArea"] button:hover {
     background:
-        rgba(255,255,255,0.08) !important;
+        rgba(255,255,255,0.70) !important;
+
+    transform:
+        translateY(-1px);
 }
 
 
 /* =========================================================
-   INPUT FOCUS
+   CHANNELS
    ========================================================= */
 
-[class*="channelTextArea"]:focus-within {
-    border-color:
-        rgba(255,255,255,0.25) !important;
+/* 通常チャンネル */
 
-    box-shadow:
-        0 12px 35px rgba(0,0,0,0.22),
-        0 3px 10px rgba(0,0,0,0.12),
-        inset 0 1px 0 rgba(255,255,255,0.42),
-        inset 0 -1px 0 rgba(0,0,0,0.10),
-        0 0 1px rgba(255,255,255,0.4) !important;
+[class*="containerDefault_"] {
+    border-radius: 10px !important;
+
+    margin:
+        2px 6px !important;
+
+    transition:
+        background 0.15s ease !important;
+}
+
+
+/* Hover */
+
+[class*="containerDefault_"]:hover {
+    background:
+        rgba(244,166,193,0.18) !important;
+}
+
+
+/* Selected */
+
+[class*="modeSelected_"] {
+    background:
+        rgba(244,166,193,0.30) !important;
+
+    border-radius:
+        10px !important;
+}
+
+
+/* =========================================================
+   TEXT COLOR
+   ========================================================= */
+
+[class*="messageContent_"],
+[class*="username_"] {
+    color:
+        var(--text-main) !important;
+}
+
+
+/* チャンネル名 */
+
+[class*="name_"] {
+    color:
+        var(--text-sub) !important;
+}
+
+
+/* =========================================================
+   Pink Accent
+   ========================================================= */
+
+[class*="item_"][aria-selected="true"] {
+    background:
+        var(--pink-main) !important;
+}
+
+
+/* =========================================================
+   Scrollbar
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background:
+        rgba(220,120,150,0.28) !important;
+
+    border-radius:
+        10px !important;
+}
+
+
+::-webkit-scrollbar-track {
+    background:
+        transparent !important;
 }
