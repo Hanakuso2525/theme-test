@@ -1,65 +1,269 @@
 /* =========================================================
-   Discord Web
-   Soft Pink Theme
-   Lightweight
+   Discord Nitro - Crimson Moon
+   Web / Tampermonkey
+   Based on Discord's documented theme variables
    ========================================================= */
 
 :root {
-    /* メインカラー */
-    --pink-main: #f4a6c1;
-    --pink-light: #ffd9e5;
-    --pink-soft: #f8c5d6;
 
-    /* パネル */
-    --panel: rgba(255, 225, 235, 0.92);
-    --panel-light: rgba(255, 235, 242, 0.94);
+    /* =====================================================
+       Crimson Moon original colors
+       ===================================================== */
 
-    /* 境界 */
-    --border: rgba(255, 255, 255, 0.65);
+    --crimson-1: #950909;
+    --crimson-2: #000000;
 
-    /* 文字 */
-    --text-main: #4d2635;
-    --text-sub: #795666;
+    /*
+     * Discord Nitro Crimson Moon
+     * 64.92deg
+     * 16.17% -> 72%
+     */
+    --crimson-gradient:
+        linear-gradient(
+            64.92deg,
+            var(--crimson-1) 16.17%,
+            var(--crimson-2) 72%
+        );
 
-    /* 影 */
-    --shadow:
-        0 5px 18px rgba(120, 50, 75, 0.12);
 
-    --radius: 18px;
-    --gap: 7px;
+    /* =====================================================
+       Theme base colors
+       ===================================================== */
+
+    --custom-theme-primary-color: #950909;
+    --custom-theme-secondary-color: #000000;
+
+    --custom-theme-base-color-light:
+        rgb(255, 204, 204);
+
+    --custom-theme-text-color-light:
+        rgb(77, 0, 0);
+
+    --custom-theme-base-color-dark:
+        rgb(26, 0, 0);
+
+    --custom-theme-text-color-dark:
+        rgb(255, 229, 229);
 }
 
 
 /* =========================================================
-   Discord Background
+   DARK THEME
    ========================================================= */
 
-.theme-dark {
-    --background-primary: #fff1f5 !important;
-    --background-secondary: #ffe8ef !important;
-    --background-secondary-alt: #ffe3eb !important;
-    --background-tertiary: #ffdce6 !important;
+.theme-dark,
+.theme-darker,
+.theme-amoled {
 
-    --bg-base-primary: #fff1f5 !important;
-    --bg-base-secondary: #ffe8ef !important;
-    --bg-base-tertiary: #ffdce6 !important;
+    /* -----------------------------------------------------
+       MAIN BACKGROUNDS
+       ----------------------------------------------------- */
 
-    --bg-surface-raised: #ffe8ef !important;
-    --bg-surface-overlay: #ffe3eb !important;
+    --background-primary:
+        var(--crimson-gradient) !important;
 
-    --chat-background: #fff1f5 !important;
-    --channeltextarea-background: transparent !important;
-    --chat-input-container-background: transparent !important;
+    --background-secondary:
+        var(--crimson-gradient) !important;
+
+    --background-secondary-alt:
+        var(--crimson-gradient) !important;
+
+    --background-tertiary:
+        var(--crimson-gradient) !important;
+
+
+    /* -----------------------------------------------------
+       CURRENT DISCORD BASE TOKENS
+       ----------------------------------------------------- */
+
+    --bg-base-primary:
+        var(--crimson-gradient) !important;
+
+    --bg-base-secondary:
+        var(--crimson-gradient) !important;
+
+    --bg-base-tertiary:
+        var(--crimson-gradient) !important;
+
+
+    --bg-surface-raised:
+        var(--crimson-gradient) !important;
+
+    --bg-surface-overlay:
+        var(--crimson-gradient) !important;
+
+
+    /* -----------------------------------------------------
+       CHAT
+       ----------------------------------------------------- */
+
+    --chat-background:
+        var(--crimson-gradient) !important;
+
+    --chat-input-container-background:
+        var(--crimson-gradient) !important;
+
+    --channeltextarea-background:
+        var(--crimson-gradient) !important;
+
+
+    /* -----------------------------------------------------
+       FLOATING
+       ----------------------------------------------------- */
+
+    --background-floating:
+        var(--crimson-gradient) !important;
+
+    --background-nested-floating:
+        var(--crimson-gradient) !important;
+
+
+    /* -----------------------------------------------------
+       INPUT
+       ----------------------------------------------------- */
+
+    --input-background:
+        var(--crimson-gradient) !important;
+
+    --input-pressed-background:
+        var(--crimson-gradient) !important;
+
+
+    /* -----------------------------------------------------
+       MODIFIERS
+       ----------------------------------------------------- */
+
+    --background-modifier-hover:
+        rgba(149, 9, 9, 0.18) !important;
+
+    --background-modifier-selected:
+        rgba(149, 9, 9, 0.40) !important;
+
+    --background-modifier-active:
+        rgba(149, 9, 9, 0.30) !important;
+
+    --background-modifier-accent:
+        rgba(149, 9, 9, 0.35) !important;
+
+    --background-modifier-accent-2:
+        rgba(149, 9, 9, 0.35) !important;
+
+
+    /* -----------------------------------------------------
+       MESSAGES
+       ----------------------------------------------------- */
+
+    --background-message-hover:
+        rgba(149, 9, 9, 0.10) !important;
+
+    --background-message-highlight:
+        rgba(149, 9, 9, 0.15) !important;
+
+    --background-message-highlight-hover:
+        rgba(149, 9, 9, 0.20) !important;
+
+
+    /* -----------------------------------------------------
+       CARDS
+       ----------------------------------------------------- */
+
+    --card-gradient-bg:
+        var(--crimson-gradient) !important;
+
+    --card-gradient-pressed-bg:
+        var(--crimson-gradient) !important;
+
+    --card-primary-bg:
+        var(--crimson-gradient) !important;
+
+    --card-primary-pressed-bg:
+        var(--crimson-gradient) !important;
+
+    --card-secondary-bg:
+        var(--crimson-gradient) !important;
+
+    --card-secondary-pressed-bg:
+        var(--crimson-gradient) !important;
+
+
+    /* -----------------------------------------------------
+       PROFILE
+       ----------------------------------------------------- */
+
+    --profile-gradient-card-background:
+        rgba(149, 9, 9, 0.25) !important;
+
+    --profile-gradient-section-box:
+        rgba(0, 0, 0, 0.45) !important;
+
+    --profile-gradient-role-pill-background:
+        rgba(149, 9, 9, 0.30) !important;
+
+    --profile-gradient-message-input-border:
+        rgba(149, 9, 9, 0.45) !important;
+
+
+    /* -----------------------------------------------------
+       SCROLLBAR
+       ----------------------------------------------------- */
+
+    --scrollbar-auto-scrollbar-color-thumb:
+        #950909 !important;
+
+    --scrollbar-auto-scrollbar-color-track:
+        #000000 !important;
+
+    --scrollbar-auto-thumb:
+        #950909 !important;
+
+    --scrollbar-auto-track:
+        #000000 !important;
+
+    --scrollbar-thin-thumb:
+        #950909 !important;
+
+    --scrollbar-thin-track:
+        #000000 !important;
+
+
+    /* -----------------------------------------------------
+       DANGER / RED
+       ----------------------------------------------------- */
+
+    --status-danger:
+        #950909 !important;
+
+    --status-danger-background:
+        #950909 !important;
+
+    --button-danger-background:
+        #950909 !important;
 }
 
 
 /* =========================================================
-   App
+   ACTUAL APP BACKGROUND
    ========================================================= */
 
 #app-mount,
 #app-mount > div {
-    background: #fff1f5 !important;
+    background:
+        var(--crimson-gradient) !important;
+}
+
+
+/* =========================================================
+   IMPORTANT:
+   Discord's large containers must actually expose the
+   gradient instead of painting an opaque background over it.
+   ========================================================= */
+
+[class*="app_"],
+[class*="bg_"],
+[class*="layers_"],
+[class*="layer_"] {
+    background:
+        transparent !important;
 }
 
 
@@ -67,42 +271,10 @@
    SERVER LIST
    ========================================================= */
 
-[class*="guilds_"] {
-    position: relative !important;
-
-    margin:
-        var(--gap)
-        0
-        var(--gap)
-        var(--gap) !important;
-
-    height:
-        calc(100% - 14px) !important;
-
-    flex: 0 0 64px !important;
-
-    width: 64px !important;
-
-    background:
-        var(--panel) !important;
-
-    border:
-        1px solid var(--border) !important;
-
-    border-radius:
-        var(--radius) !important;
-
-    box-shadow:
-        var(--shadow) !important;
-
-    overflow: hidden !important;
-}
-
-
-/* Server list internal */
-
+[class*="guilds_"],
 [class*="guilds_"] [class*="scroller_"] {
-    background: transparent !important;
+    background:
+        var(--crimson-gradient) !important;
 }
 
 
@@ -110,61 +282,11 @@
    CHANNEL LIST
    ========================================================= */
 
-[class*="sidebar_"] {
-    position: relative !important;
-
-    margin:
-        var(--gap)
-        0
-        var(--gap)
-        var(--gap) !important;
-
-    height:
-        calc(100% - 14px) !important;
-
-    background:
-        var(--panel-light) !important;
-
-    border:
-        1px solid var(--border) !important;
-
-    border-radius:
-        var(--radius) !important;
-
-    box-shadow:
-        var(--shadow) !important;
-
-    overflow: hidden !important;
-}
-
-
-/* Channel list internal */
-
+[class*="sidebar_"],
 [class*="sidebar_"] [class*="scroller_"],
 [class*="sidebar_"] [class*="container_"] {
-    background: transparent !important;
-}
-
-
-/* Header */
-
-[class*="sidebar_"] [class*="header_"] {
     background:
-        rgba(255, 210, 225, 0.55) !important;
-
-    border-bottom:
-        1px solid rgba(255,255,255,0.55) !important;
-}
-
-
-/* Bottom user panel */
-
-[class*="sidebar_"] [class*="panels_"] {
-    background:
-        rgba(255, 215, 228, 0.65) !important;
-
-    border-top:
-        1px solid rgba(255,255,255,0.55) !important;
+        var(--crimson-gradient) !important;
 }
 
 
@@ -172,50 +294,22 @@
    CHAT
    ========================================================= */
 
-[class*="chat_"] {
-    position: relative !important;
-
-    margin:
-        var(--gap)
-        var(--gap)
-        var(--gap)
-        var(--gap) !important;
-
-    height:
-        calc(100% - 14px) !important;
-
-    background:
-        #fff4f7 !important;
-
-    border:
-        1px solid rgba(255, 255, 255, 0.75) !important;
-
-    border-radius:
-        var(--radius) !important;
-
-    box-shadow:
-        0 5px 20px rgba(120, 50, 75, 0.10) !important;
-
-    overflow: hidden !important;
-}
-
-
-/* Chat internals */
-
+[class*="chat_"],
 [class*="chatContent_"],
 [class*="content_"] {
-    background: transparent !important;
+    background:
+        var(--crimson-gradient) !important;
 }
 
 
-/* Chat header */
+/* =========================================================
+   MESSAGE AREA
+   ========================================================= */
 
-[class*="chat_"] [class*="header_"] {
+[class*="messagesWrapper_"],
+[class*="scroller_"] {
     background:
-        rgba(255, 225, 235, 0.55) !important;
-
-    border-bottom:
-        1px solid rgba(255,255,255,0.7) !important;
+        transparent !important;
 }
 
 
@@ -224,161 +318,213 @@
    ========================================================= */
 
 [class*="channelTextArea"] {
-    position: relative !important;
-
-    margin:
-        0
-        8px
-        8px
-        8px !important;
-
     background:
-        #ffe6ee !important;
+        var(--crimson-gradient) !important;
 
     border:
-        1px solid rgba(255,255,255,0.8) !important;
+        1px solid rgba(255, 80, 80, 0.22) !important;
 
     border-radius:
-        16px !important;
+        12px !important;
 
     box-shadow:
-        0 5px 16px rgba(150, 60, 90, 0.10),
-        inset 0 1px 0 rgba(255,255,255,0.8) !important;
-
-    overflow: hidden !important;
+        0 4px 16px rgba(0, 0, 0, 0.25) !important;
 }
 
 
-/* Input */
+/* =========================================================
+   TEXT INPUT
+   ========================================================= */
 
 [class*="channelTextArea"] textarea,
 [class*="channelTextArea"] [contenteditable="true"] {
-    background: transparent !important;
-
-    border: none !important;
-
-    outline: none !important;
-
-    box-shadow: none !important;
+    background:
+        transparent !important;
 }
 
 
 /* =========================================================
-   INPUT BUTTONS
+   SELECTED CHANNEL
    ========================================================= */
-
-[class*="channelTextArea"] button {
-    background:
-        rgba(255,255,255,0.42) !important;
-
-    border:
-        1px solid rgba(255,255,255,0.65) !important;
-
-    border-radius:
-        10px !important;
-
-    box-shadow:
-        0 2px 6px rgba(150,60,90,0.08) !important;
-
-    transition:
-        background 0.15s ease,
-        transform 0.15s ease !important;
-}
-
-
-[class*="channelTextArea"] button:hover {
-    background:
-        rgba(255,255,255,0.70) !important;
-
-    transform:
-        translateY(-1px);
-}
-
-
-/* =========================================================
-   CHANNELS
-   ========================================================= */
-
-/* 通常チャンネル */
-
-[class*="containerDefault_"] {
-    border-radius: 10px !important;
-
-    margin:
-        2px 6px !important;
-
-    transition:
-        background 0.15s ease !important;
-}
-
-
-/* Hover */
-
-[class*="containerDefault_"]:hover {
-    background:
-        rgba(244,166,193,0.18) !important;
-}
-
-
-/* Selected */
 
 [class*="modeSelected_"] {
     background:
-        rgba(244,166,193,0.30) !important;
+        linear-gradient(
+            64.92deg,
+            rgba(149, 9, 9, 0.60),
+            rgba(0, 0, 0, 0.50)
+        ) !important;
 
     border-radius:
-        10px !important;
+        8px !important;
 }
 
 
 /* =========================================================
-   TEXT COLOR
+   CHANNEL HOVER
    ========================================================= */
 
-[class*="messageContent_"],
-[class*="username_"] {
-    color:
-        var(--text-main) !important;
-}
-
-
-/* チャンネル名 */
-
-[class*="name_"] {
-    color:
-        var(--text-sub) !important;
-}
-
-
-/* =========================================================
-   Pink Accent
-   ========================================================= */
-
-[class*="item_"][aria-selected="true"] {
+[class*="wrapper_"]:hover,
+[class*="containerDefault_"]:hover {
     background:
-        var(--pink-main) !important;
+        linear-gradient(
+            64.92deg,
+            rgba(149, 9, 9, 0.25),
+            rgba(0, 0, 0, 0.20)
+        ) !important;
 }
 
 
 /* =========================================================
-   Scrollbar
+   HEADER
    ========================================================= */
 
-::-webkit-scrollbar {
-    width: 6px !important;
+[class*="header_"] {
+    background:
+        linear-gradient(
+            64.92deg,
+            rgba(149, 9, 9, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ) !important;
 }
 
+
+/* =========================================================
+   USER PANEL
+   ========================================================= */
+
+[class*="panels_"] {
+    background:
+        linear-gradient(
+            64.92deg,
+            rgba(149, 9, 9, 0.45),
+            rgba(0, 0, 0, 0.60)
+        ) !important;
+}
+
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+[role="dialog"],
+[class*="modal_"] {
+    background:
+        linear-gradient(
+            64.92deg,
+            #5c0808 16.17%,
+            #050000 72%
+        ) !important;
+}
+
+
+/* =========================================================
+   POPOVERS / MENUS
+   ========================================================= */
+
+[class*="menu_"],
+[class*="popout_"] {
+    background:
+        linear-gradient(
+            64.92deg,
+            rgba(100, 7, 7, 0.98) 16.17%,
+            rgba(0, 0, 0, 0.98) 72%
+        ) !important;
+}
+
+
+/* =========================================================
+   TOOLTIPS
+   ========================================================= */
+
+[class*="tooltip_"] {
+    background:
+        linear-gradient(
+            64.92deg,
+            #950909 16.17%,
+            #000000 72%
+        ) !important;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+[class*="lookFilled_"] {
+    background:
+        linear-gradient(
+            64.92deg,
+            #950909 16.17%,
+            #000000 72%
+        ) !important;
+}
+
+
+/* =========================================================
+   MENTIONS
+   ========================================================= */
+
+[class*="mentioned_"] {
+    background:
+        linear-gradient(
+            64.92deg,
+            rgba(149, 9, 9, 0.28) 16.17%,
+            rgba(0, 0, 0, 0.15) 72%
+        ) !important;
+
+    border-left:
+        3px solid #950909 !important;
+}
+
+
+/* =========================================================
+   REACTION
+   ========================================================= */
+
+[class*="reaction_"] {
+    background:
+        rgba(149, 9, 9, 0.22) !important;
+
+    border:
+        1px solid rgba(149, 9, 9, 0.35) !important;
+}
+
+
+/* =========================================================
+   LINKS / ACCENT
+   ========================================================= */
+
+a {
+    color:
+        #ff7777 !important;
+}
+
+
+/* =========================================================
+   NEW MESSAGE BAR
+   ========================================================= */
+
+[class*="newMessagesBar_"] {
+    background:
+        linear-gradient(
+            64.92deg,
+            #950909,
+            #000000
+        ) !important;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
 
 ::-webkit-scrollbar-thumb {
     background:
-        rgba(220,120,150,0.28) !important;
-
-    border-radius:
-        10px !important;
+        #950909 !important;
 }
-
 
 ::-webkit-scrollbar-track {
     background:
-        transparent !important;
+        #000000 !important;
 }
